@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-require="math math-format graphie">
+<html data-require="math math-format graphie interactive">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Adding vectors</title>
@@ -46,9 +46,27 @@
                 var AF = 1 + 0.8 / sqrt( AX * AX + AY * AY );
                 label( [AF * AX, AF * AY], "\\vec a", { color: "#6495ed" } );
 
+				addMouseLayer();
                 var BF = 1 + 0.8 / sqrt( BX * BX + BY * BY );
                 label( [BF * BX, BF * BY], "\\vec b", { color: "#28ae7b" } );
-            </div>
+
+
+				graph.lineA = addMovableLineSegment({
+						snapX: 1,
+						snapY: 1,
+						coordA: [ 0, 0 ],
+						coordZ: [ AX, AY ],
+						fixed: false,
+						});
+
+				graph.lineB = addMovableLineSegment({
+						snapX: 1,
+						snapY: 1,
+						coordA: [ 0, 0 ],
+						coordZ: [ BX, BY ],
+						fixed: false,
+						});
+</div>
 
             <div class="solution" data-type="multiple">
                 <p><span class="sol" data-fallback="1"><var>AX + BX</var></span> <code>\hat\imath + {}</code><span class="sol" data-fallback="1"><var>AY + BY</var></span> <code>\hat\jmath</code></p>
