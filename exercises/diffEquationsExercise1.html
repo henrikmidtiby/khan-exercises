@@ -14,13 +14,13 @@ where certain coefficients in the equation can be changed.
     <div class="vars">
 
 		<var id="C1a">randRange(1, 6) / 6</var>
-		<var id="C1b">randRange(1, 6) / 6</var>
+		<var id="C1b">1 + C1a</var>
 		<var id="C2a">randRange(2, 4)</var>
-		<var id="C2b">randRange(2, 4)</var>
+		<var id="C2b">C2a</var>
 		<var id="C3a">randRange(1, 6) / 6</var>
-		<var id="C3b">randRange(1, 6) / 6</var>
+		<var id="C3b">1+C3a</var>
 		<var id="C4a">randRange(1, 6) / 6</var>
-		<var id="C4b">randRange(1, 6) / 6</var>
+		<var id="C4b">1+C4a</var>
 
 		<var id="FNC1a">function (x) {return 0.2*exp(C1a*x)}</var>
 		<var id="FNC1b">function (x) {return 0.2*exp(C1b*x)}</var>
@@ -32,7 +32,7 @@ where certain coefficients in the equation can be changed.
 		<var id="FNC4b">function (x) {return C4b*x}</var>
 
 		<!-- Permute array with differential equations and their solutions. -->
-		<var id="Solutions">shuffle([
+		<var id="SolutionsRaw">[
     			{ func: FNC1a, diffeqn: "\\frac{dy}{dx} = " + toFractionTex(C1a) + "y"},
     			{ func: FNC1b, diffeqn: "\\frac{dy}{dx} = " + toFractionTex(C1b) + "y"},
     			{ func: FNC2a, diffeqn: "\\frac{dy}{dx} = " + toFractionTex(C2a) + "y (2 - y)"},
@@ -40,7 +40,8 @@ where certain coefficients in the equation can be changed.
     			{ func: FNC3a, diffeqn: "\\frac{dy}{dx} = " + toFractionTex(2*C3a) + "x"},
     			{ func: FNC3b, diffeqn: "\\frac{dy}{dx} = " + toFractionTex(2*C3b) + "x"},
     			{ func: FNC4a, diffeqn: "\\frac{dy}{dx} = " + toFractionTex(C4a)},
-    			{ func: FNC4b, diffeqn: "\\frac{dy}{dx} = " + toFractionTex(C4b)}])</var>
+    			{ func: FNC4b, diffeqn: "\\frac{dy}{dx} = " + toFractionTex(C4b)}]</var>
+		<var id="Solutions">shuffle(SolutionsRaw)</var>
         <var id="Func">eval(Solutions[0].func)</var>
         <var id="DiffEqnAnswer">Solutions[0].diffeqn</var>
         <var id="DiffEqnWrong1">Solutions[1].diffeqn</var>
