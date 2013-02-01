@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html data-require="math math-format">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Recognize a differential equation</title>
+    <script src="../khan-exercise.js"></script>
+</head>
+<body>
+    <div class="exercise">
+        <div class="vars">
+            <var id="A">randRange(1, 5)</var>
+            <var id="B">randRange(1, 5)</var>
+            <var id="C">randRange(1, 5)</var>
+            <var id="Equations">[
+                { eqn: "y = " + A + " x + " + B, isdiffeqn: false, isnotdiffeqn: true }, 
+                { eqn: "y(x) = " + A + " x + " + B + " + " + C + " x^2", isdiffeqn: false, isnotdiffeqn: true }, 
+                { eqn: "y(t) = " + A + " t + " + B + " + " + C + " t^2", isdiffeqn: false, isnotdiffeqn: true }, 
+                { eqn: "\\frac{dy}{dt} = " + A + " t", isdiffeqn: true, isnotdiffeqn: false },
+                { eqn: "y'(t) = " + A + " t", isdiffeqn: true, isnotdiffeqn: false }]</var>
+			<var id="Equation">randFromArray(Equations)</var>
+        </div>
+		<div class="problems">
+			<div id="problem-type-or-description">
+			<p class="problem">Determine if the equation is a differential equation.</p>
+			<p class="question">Is <code><var>Equation.eqn</var></code> a differential equation?</p>
+			<p class="solution"><var>Equation.isdiffeqn</var></p>
+			<ul class="choices">
+				<li><var>Equation.isnotdiffeqn</var></li>
+			</ul>
+			</div>
+		</div>
+    </div>
+</body>
+</html>

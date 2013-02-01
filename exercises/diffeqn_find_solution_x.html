@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html data-require="math math-format">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Find solution to differential equation (1)</title>
+    <script src="../khan-exercise.js"></script>
+</head>
+<body>
+    <div class="exercise">
+        <div class="vars">
+            <var id="A">randRange(-5, 5)</var>
+            <var id="B">randRange(-5, 5)</var>
+            <var id="Equations">[
+                { eqn: "y'(t) = " + A, answer: function( A, B) { return "y = " + A + "\\cdot t + " + B;} },
+                { eqn: "y'(t) = " + 2*A + " t", answer: function( A, B) { return "y = " + A + "\\cdot t^2 + " + B;} }]</var>
+			<var id="Equation">randFromArray(Equations)</var>
+        </div>
+		<div class="problems">
+			<div id="problem-type-or-description">
+			<p class="problem">Determine solution to the differential equation.</p>
+			<p class="question">Choose the solution to the following differential equation: <code><var>Equation.eqn</var></code></p>
+			<p class="solution"><code><var>Equation.answer(A, B)</var></code></p>
+			<ul class="choices" data-show="4">
+				<li><code><var>Equation.answer(A-2, B+1)</var></code></li>
+				<li><code><var>Equation.answer(A-1, B+1)</var></code></li>
+				<li><code><var>Equation.answer(A+1, B+1)</var></code></li>
+				<li><code><var>Equation.answer(A+2, B+1)</var></code></li>
+				<li><code><var>Equation.answer(A-2, B)</var></code></li>
+				<li><code><var>Equation.answer(A-1, B)</var></code></li>
+				<li><code><var>Equation.answer(A+1, B)</var></code></li>
+				<li><code><var>Equation.answer(A+2, B)</var></code></li>
+				<li><code><var>Equation.answer(A-2, B-1)</var></code></li>
+				<li><code><var>Equation.answer(A-1, B-1)</var></code></li>
+				<li><code><var>Equation.answer(A+1, B-1)</var></code></li>
+				<li><code><var>Equation.answer(A+2, B-1)</var></code></li>
+			</ul>
+			</div>
+		</div>
+    </div>
+</body>
+</html>
