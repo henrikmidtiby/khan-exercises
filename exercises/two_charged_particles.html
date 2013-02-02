@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html data-require="math graphie">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Charged particles</title>
+    <script src="../khan-exercise.js"></script>
+    <script>
+        var point1Style = {
+            color : "#6495ED",
+            stroke : "#6495ED",
+            fill : "#6495ED"
+        };
+        var point2Style = {
+            color : "#28AE7B",
+            stroke : "#28AE7B",
+            fill : "#28AE7B",
+            strokeWidth: 1.5
+        };
+        var midPtStyle = {
+            color : "#FFA500",
+            stroke : "#FFA500",
+            fill : "#FFA500",
+            strokeWidth: 1.5
+        };
+    </script>
+    <style type="text/css">
+        #answer_area input[type=text] {
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="exercise">
+        <div class="vars" data-ensure="X1 < X2 && Y1 !== Y2">
+            <var id="X1">randRange( -4, 4 )</var>
+            <var id="X2">randRange( -4, 4 )</var>
+            <var id="Y1">randRange( -4, 4 )</var>
+            <var id="Y2">randRange( -4, 4 )</var>
+			<var id="Charge1">randRangeNonZero(-5, 5)</var>
+			<var id="Charge2">randRangeNonZero(-5, 5)</var>
+			<var id="Answer">(Charge1 * Charge2 < 0 ? "Attractive" : "Repulsive")</var>
+        </div>
+
+        <div class="problems">
+            <div id="find-midpoint">
+                <p class="question">Are the electric forces between the two point charges attractive or repulsive?</p>
+				<p class="problem">At <span class="hint_blue"><code>(<var>X1</var>, <var>Y1</var>)</code></span> is a particle with charge <var>Charge1</var>
+						and at <span class="hint_green"><code>(<var>X2</var>, <var>Y2</var>)</code></span> is a particle with charge <var>Charge2</var>.</p>
+
+                <div class="graphie" id="graph">
+                    graphInit({
+                        range: 5,
+                        scale: 20,
+                        tickStep: 10,
+                        labelStep: 5,
+                        unityLabels: false,
+                        axisArrows: "<->",
+                    });
+
+                    style( point1Style );
+                    circle( [ X1, Y1 ], 0.15 );
+                    label( [ X1, Y1 + 1 ], "(" + Charge1 + ")");
+
+                    style( point2Style );
+                    circle( [ X2, Y2 ], 0.15 );
+                    label( [ X2, Y2 + 1 ], "(" + Charge2 + ")");
+                </div>
+
+				<div class="solution"><var>Answer</var></div>
+				<ul class="choices" data-category="true">
+					<li>Attractive</li>
+					<li>Repulsive</li>
+				</ul>
+
+                <div class="hints">
+                    <p>Opposite charges attrack each others while similar charges repel each other.</p>
+					<p data-if="Charge1 > 0">The first charge is positive.</p>
+					<p data-if="Charge1 < 0">The first charge is negative.</p>
+					<p data-if="Charge2 > 0">The second charge is positive.</p>
+					<p data-if="Charge2 < 0">The second charge is negative.</p>
+					<p data-if="Charge1 * Charge2 < 0">The charges are opposite and thus the electric force is attractive.</p>
+					<p data-if="Charge1 * Charge2 > 0">The charges are similar and thus the electric force is repulsive.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
