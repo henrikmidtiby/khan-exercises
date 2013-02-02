@@ -13,7 +13,7 @@
             <var id="C">randRange(1, 5)</var>
             <var id="Equations">[
                 { eqn: "y'(t) = " + A + "\\cdot y", answer: function( A, B, C) { return "y = " + B + "\\exp \\left( " + A + " t \\right)";} },
-                { eqn: "y'(t) = " + A*C + " y ( " + B + " - y)", answer: function( A, B, C) { return "y = \\frac{" + A + "}{1 + " + B + " \\cdot \\exp(-" + C + " t)}";} }]</var>
+                { eqn: "y'(t) = " + A + " y ( " + B + " - y)", answer: function( A, B, C) { return "y = \\frac{" + B + "}{1 + " + C + " \\cdot \\exp(-" + A*B + " t)}";} }]</var>
 			<var id="Equation">randFromArray(Equations)</var>
         </div>
 		<div class="problems">
@@ -30,10 +30,10 @@
 				<li><code><var>Equation.answer(A-1, B, C)</var></code></li>
 				<li><code><var>Equation.answer(A+1, B, C)</var></code></li>
 				<li><code><var>Equation.answer(A+2, B, C)</var></code></li>
-				<li><code><var>Equation.answer(A-2, B-1, C)</var></code></li>
-				<li><code><var>Equation.answer(A-1, B-1, C)</var></code></li>
-				<li><code><var>Equation.answer(A+1, B-1, C)</var></code></li>
-				<li><code><var>Equation.answer(A+2, B-1, C)</var></code></li>
+				<li data-if="B-1 > 0"><code><var>Equation.answer(A-2, B-1, C)</var></code></li>
+				<li data-if="B-1 > 0"><code><var>Equation.answer(A-1, B-1, C)</var></code></li>
+				<li data-if="B-1 > 0"><code><var>Equation.answer(A+1, B-1, C)</var></code></li>
+				<li data-if="B-1 > 0"><code><var>Equation.answer(A+2, B-1, C)</var></code></li>
 			</ul>
 			</div>
 		</div>
