@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html data-require="math math-format">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Initial conditions</title>
+    <script src="../khan-exercise.js"></script>
+</head>
+<body>
+    <div class="exercise">
+		<div class="problems">
+			<div id="exponential-growth">
+        		<div class="vars">
+           			<var id="A">randRangeNonZero(-5, 5)</var>
+        		    <var id="B">randRangeNonZero(-3, 3)</var>
+        		</div>
+				<div class="problem">
+					<p>Find the solution to the differential equation:</p>
+					<p><code>\frac{dy}{dt} = <var>B</var> \cdot y</code></p>
+					<p> with the initial condition <code>y(0) = <var>A</var></code>.</p>
+					<p>Express your answer in terms of A and B values in the following equation.</p>
+					<p><code>y(t) = A \cdot \exp \left( B \cdot t \right)</code></p>
+				</div>
+				<p class="question">Determine solution to the differential equation matching the initial conditions.</p>
+				<div class="solution" data-type="multiple">
+					<p><code>A</code> = <span class="sol" data-type="rational"><var>A</var></span></p>
+					<p><code>B</code> = <span class="sol" data-type="rational"><var>B</var></span></p>
+				</div>
+                <div class="hints">
+					<div>
+						<p>The general solution to the differential equation is:</p>
+						<p><code>y(t) = A \cdot \exp \left( <var>B</var> \cdot t \right)</code></p>
+						<p>From this the values of B is found to be <var>B</var>.</p>
+					</div>
+					<div>
+						<p>Inertion of the initial condition yields (<code>t = 0</code> and <code>y(0) = <var>A</var></code>):</p>
+						<p><code><var>A</var> = A \cdot \exp \left( <var>B</var> \cdot 0 \right)</code></p>
+					</div>
+					<div>
+						<p>This reduces to<p>
+						<p><code><var>A</var> = A</code></p>
+					</div>
+				</div>
+			</div>
+			<div id="logistic-growth">
+        		<div class="vars">
+           			<var id="A">randRange(2, 5)</var>
+        		    <var id="B">randRange(1, 3)</var>
+           			<var id="C">A / (1 + randRange(1, 4))</var>
+					<var id="Aval">A</var>
+					<var id="Bval">(A - C)/C</var>
+					<var id="Cval">A*B</var>
+        		</div>
+				<p class="question">Determine solution to the differential equation matching the initial conditions.</p>
+				<p class="problem">Find the solution to the differential equation:</p>
+				<p><code>\frac{dy}{dt} = <var>B</var> \cdot y \cdot (<var>A</var> - y)</code></p>
+				<p> with the initial condition <code>y(0) = <var>C</var></code>.</p>
+				<p>Express your answer in terms of A and B values in the following equation.</p>
+				<p><code>y(t) = \frac{A}{1 + B \cdot \exp \left( - C \cdot t \right)}</code></p>
+				<div class="solution" data-type="multiple">
+					<p><code>A</code> = <span class="sol" data-type="rational"><var>Aval</var></span></p>
+					<p><code>B</code> = <span class="sol" data-type="rational"><var>Bval</var></span></p>
+					<p><code>C</code> = <span class="sol" data-type="rational"><var>Cval</var></span></p>
+				</div>
+                <div class="hints">
+					<div>
+						<p>The general solution to the differential equation is:</p>
+						<p><code>y(t) = \frac{<var>A</var>}{1 + B \cdot \exp \left( - <var>A*B</var> \cdot t \right)}</code></p>
+						<p>From this the values of A is found to be <var>A</var> and C to be <var>A*B</var>.</p>
+					</div>
+					<div>
+						<p>Inertion of the initial condition yields (<code>t = 0</code> and <code>y(0) = <var>C</var></code>):</p>
+						<p><code><var>C</var> = \frac{<var>A</var>}{1 + B \cdot \exp \left( - <var>A*B</var> \cdot 0 \right)}</code></p>
+					</div>
+					<div>
+						<p>This reduces to<p>
+						<p><code><var>C</var> = \frac{<var>A</var>}{1 + B}</code></p>
+						<p><code>B = \frac{<var>A</var>}{<var>C</var>} - 1 = <var>B</var></code></p>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</body>
+</html>
