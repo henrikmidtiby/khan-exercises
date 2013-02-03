@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html data-require="math graphie">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Charged particles</title>
+    <script src="../khan-exercise.js"></script>
+    <script>
+        var point1Style = {
+            color : "#6495ED",
+            stroke : "#6495ED",
+            fill : "#6495ED"
+        };
+        var point2Style = {
+            color : "#28AE7B",
+            stroke : "#28AE7B",
+            fill : "#28AE7B",
+            strokeWidth: 1.5
+        };
+        var point3Style = {
+            color : "#F8AE7B",
+            stroke : "#F8AE7B",
+            fill : "#F8AE7B",
+            strokeWidth: 1.5
+        };
+        var midPtStyle = {
+            color : "#FFA500",
+            stroke : "#FFA500",
+            fill : "#FFA500",
+            strokeWidth: 1.5
+        };
+    </script>
+    <style type="text/css">
+        #answer_area input[type=text] {
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="exercise">
+        <div class="vars" data-ensure="X1 < X2 && Y1 !== Y2">
+            <var id="X1">randRange( -4, 4 )</var>
+            <var id="X2">randRange( -4, 4 )</var>
+            <var id="Y1">randRange( -4, 4 )</var>
+            <var id="Y2">randRange( -4, 4 )</var>
+			<var id="Charge1">randRangeNonZero(-5, 5)</var>
+			<var id="Charge2">randRangeNonZero(-5, 5)</var>
+			<var id="Answer">(Charge1 * Charge2 < 0 ? "Attractive" : "Repulsive")</var>
+        </div>
+
+        <div class="problems">
+            <div id="find-midpoint">
+                <p class="question">Are the electric forces between the two point charges attractive or repulsive?</p>
+				<p class="problem">At <span class="hint_blue"><code>(<var>X1</var>, <var>Y1</var>)</code></span> is a particle with charge <var>Charge1</var>
+						and at <span class="hint_green"><code>(<var>X2</var>, <var>Y2</var>)</code></span> is a particle with charge <var>Charge2</var>.</p>
+
+                <div class="graphie" id="graph">
+                    graphInit({
+                        range: [[0, 10], [0, 10]],
+                        scale: 20,
+                        tickStep: 10,
+                        labelStep: 5,
+                        unityLabels: false,
+                        axisArrows: "<->",
+                    });
+                    style( point2Style );
+
+					fnc = function(x, y) {
+						x = x - 3;
+						y = y - 4;
+						return 40/(x*x + 2*y*y) + x;
+					}
+
+					interpolatedZero = function(f1, f2)
+					{
+						if(abs(f1 - f2) < 0.001)
+						{
+							return 1;
+						}
+						return (-f2 / (f1 - f2));
+					}
+
+					locateZero = function(f1, f2, pos1x, pos1y, pos2x, pos2y)
+					{
+						var a = interpolatedZero(f1, f2);
+						var pt = [a*pos1x+(1-a)*pos2x, a*pos1y+(1-a)*pos2y];
+						return pt;
+					}
+
+					drawContourInTriangle = function(level, x, y, stepsize)
+					{
+						level = level + 0.000000001;
+						var dx = stepsize / 2;
+						var dy = stepsize / 2;
+						var x1 = x;
+						var x2 = x + 2*dx;
+						var x3 = x;
+						var y1 = y;
+						var y2 = y;
+						var y3 = y + 2*dy;
+
+						f1 = fnc(x1, y1) - level;
+						f2 = fnc(x2, y2) - level;
+						f3 = fnc(x3, y3) - level;
+						var pt12 = locateZero(f1, f2, x1, y1, x2, y2);
+						var pt13 = locateZero(f1, f3, x1, y1, x3, y3);
+						var pt23 = locateZero(f2, f3, x2, y2, x3, y3);
+						//if(f1 &lt; 0 && f2 &lt; 0 && f3 &lt; 0)
+	                	//    line(pt12, pt23);
+						if(f1 &lt; 0 && f2 &lt; 0 && f3 &gt; 0)
+	                	    line(pt13, pt23);
+						if(f1 &lt; 0 && f2 &gt; 0 && f3 &lt; 0)
+	                	    line(pt12, pt23);
+						if(f1 &lt; 0 && f2 &gt; 0 && f3 &gt; 0)
+	                	    line(pt12, pt13);
+						if(f1 &gt; 0 && f2 &lt; 0 && f3 &lt; 0)
+	                	    line(pt12, pt13);
+						if(f1 &gt; 0 && f2 &lt; 0 && f3 &gt; 0)
+	                	    line(pt12, pt23);
+						if(f1 &gt; 0 && f2 &gt; 0 && f3 &lt; 0)
+	                	    line(pt13, pt23);
+						//if(f1 &gt; 0 && f2 &gt; 0 && f3 &gt; 0)
+	                	//    line(pt12, pt23);
+					
+						var x1 = x + 2*dx;
+						var x2 = x + 2*dx;
+						var x3 = x;
+						var y1 = y + 2*dy;
+						var y2 = y;
+						var y3 = y + 2*dy;
+
+						f1 = fnc(x1, y1) - level;
+						f2 = fnc(x2, y2) - level;
+						f3 = fnc(x3, y3) - level;
+						var pt12 = locateZero(f1, f2, x1, y1, x2, y2);
+						var pt13 = locateZero(f1, f3, x1, y1, x3, y3);
+						var pt23 = locateZero(f2, f3, x2, y2, x3, y3);
+						//if(f1 &lt; 0 && f2 &lt; 0 && f3 &lt; 0)
+	                	//    line(pt12, pt23);
+						if(f1 &lt; 0 && f2 &lt; 0 && f3 &gt; 0)
+	                	    line(pt13, pt23);
+						if(f1 &lt; 0 && f2 &gt; 0 && f3 &lt; 0)
+	                	    line(pt12, pt23);
+						if(f1 &lt; 0 && f2 &gt; 0 && f3 &gt; 0)
+	                	    line(pt12, pt13);
+						if(f1 &gt; 0 && f2 &lt; 0 && f3 &lt; 0)
+	                	    line(pt12, pt13);
+						if(f1 &gt; 0 && f2 &lt; 0 && f3 &gt; 0)
+	                	    line(pt12, pt23);
+						if(f1 &gt; 0 && f2 &gt; 0 && f3 &lt; 0)
+	                	    line(pt13, pt23);
+						//if(f1 &gt; 0 && f2 &gt; 0 && f3 &gt; 0)
+	                	//    line(pt12, pt23);
+					}
+						
+					var level = 5.1;
+					var stepsize = 0.25;
+
+					for(var yy = 0; yy &lt;= 10; yy += stepsize)
+					{
+						for(var xx = 0; xx &lt;= 10; xx += stepsize)
+						{
+                    		style( point1Style );
+							drawContourInTriangle(1, xx, yy, stepsize);
+                    		style( point2Style );
+							drawContourInTriangle(4, xx, yy, stepsize);
+                    		style( point3Style );
+							drawContourInTriangle(9, xx, yy, stepsize);
+						}
+					}
+                </div>
+
+
+				<div class="solution"><var>Answer</var></div>
+				<ul class="choices" data-category="true">
+					<li>Attractive</li>
+					<li>Repulsive</li>
+				</ul>
+
+                <div class="hints">
+                	<div class="graphie" data-update="graph">
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
