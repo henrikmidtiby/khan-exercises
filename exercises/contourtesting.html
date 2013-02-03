@@ -54,25 +54,9 @@
 						and at <span class="hint_green"><code>(<var>X2</var>, <var>Y2</var>)</code></span> is a particle with charge <var>Charge2</var>.</p>
 
                 <div class="graphie" id="graph">
-                    graphInit({
-                        range: [[0, 10], [0, 10]],
-                        scale: 20,
-                        tickStep: 10,
-                        labelStep: 5,
-                        unityLabels: false,
-                        axisArrows: "<->",
-                    });
-                    style( point2Style );
-
-					fnc = function(x, y) {
-						x = x - 3;
-						y = y - 4;
-						return 40/(x*x + 2*y*y) + x;
-					}
-
 					interpolatedZero = function(f1, f2)
 					{
-						if(abs(f1 - f2) < 0.001)
+						if(abs(f1 - f2) &lt; 0.001)
 						{
 							return 1;
 						}
@@ -86,7 +70,7 @@
 						return pt;
 					}
 
-					drawContourInTriangle = function(level, x, y, stepsize)
+					drawContourInTriangle = function(ffnc, level, x, y, stepsize)
 					{
 						level = level + 0.000000001;
 						var dx = stepsize / 2;
@@ -98,9 +82,9 @@
 						var y2 = y;
 						var y3 = y + 2*dy;
 
-						f1 = fnc(x1, y1) - level;
-						f2 = fnc(x2, y2) - level;
-						f3 = fnc(x3, y3) - level;
+						f1 = ffnc(x1, y1) - level;
+						f2 = ffnc(x2, y2) - level;
+						f3 = ffnc(x3, y3) - level;
 						var pt12 = locateZero(f1, f2, x1, y1, x2, y2);
 						var pt13 = locateZero(f1, f3, x1, y1, x3, y3);
 						var pt23 = locateZero(f2, f3, x2, y2, x3, y3);
@@ -121,19 +105,19 @@
 						//if(f1 &gt; 0 && f2 &gt; 0 && f3 &gt; 0)
 	                	//    line(pt12, pt23);
 					
-						var x1 = x + 2*dx;
-						var x2 = x + 2*dx;
-						var x3 = x;
-						var y1 = y + 2*dy;
-						var y2 = y;
-						var y3 = y + 2*dy;
+						x1 = x + 2*dx;
+						x2 = x + 2*dx;
+						x3 = x;
+						y1 = y + 2*dy;
+						y2 = y;
+						y3 = y + 2*dy;
 
-						f1 = fnc(x1, y1) - level;
-						f2 = fnc(x2, y2) - level;
-						f3 = fnc(x3, y3) - level;
-						var pt12 = locateZero(f1, f2, x1, y1, x2, y2);
-						var pt13 = locateZero(f1, f3, x1, y1, x3, y3);
-						var pt23 = locateZero(f2, f3, x2, y2, x3, y3);
+						f1 = ffnc(x1, y1) - level;
+						f2 = ffnc(x2, y2) - level;
+						f3 = ffnc(x3, y3) - level;
+						pt12 = locateZero(f1, f2, x1, y1, x2, y2);
+						pt13 = locateZero(f1, f3, x1, y1, x3, y3);
+						pt23 = locateZero(f2, f3, x2, y2, x3, y3);
 						//if(f1 &lt; 0 && f2 &lt; 0 && f3 &lt; 0)
 	                	//    line(pt12, pt23);
 						if(f1 &lt; 0 && f2 &lt; 0 && f3 &gt; 0)
@@ -152,21 +136,39 @@
 	                	//    line(pt12, pt23);
 					}
 						
-					var level = 5.1;
-					var stepsize = 0.25;
-
-					for(var yy = 0; yy &lt;= 10; yy += stepsize)
+					drawContours = function(ffnc, threshold, xlow, xhigh, ylow, yhigh, stepsize)
 					{
-						for(var xx = 0; xx &lt;= 10; xx += stepsize)
+						for(var xx = xlow; xx &lt;= xhigh; xx += stepsize)
 						{
-                    		style( point1Style );
-							drawContourInTriangle(1, xx, yy, stepsize);
-                    		style( point2Style );
-							drawContourInTriangle(4, xx, yy, stepsize);
-                    		style( point3Style );
-							drawContourInTriangle(9, xx, yy, stepsize);
+							for(var yy = 0; yy &lt;= 10; yy += stepsize)
+							{
+								drawContourInTriangle(fnc, threshold, xx, yy, stepsize);
+							}
 						}
 					}
+
+
+                    graphInit({
+                        range: [[0, 10], [0, 10]],
+                        scale: 20,
+                        tickStep: 10,
+                        labelStep: 5,
+                        unityLabels: false,
+                        axisArrows: "<->",
+                    });
+
+
+					fnc = function(x, y) {
+						return 3/Math.pow(Math.pow(x-1, 2) + Math.pow(y-3, 2), 0.5) + x;
+					}
+
+
+	        		style({stroke : "#000000"});
+					drawContours(fnc, 6, 0, 10, 0, 10, 0.25);
+	        		style({stroke : "#505050"});
+					drawContours(fnc, 2, 0, 10, 0, 10, 0.25);
+	        		style({stroke : "#A0A0A0"});
+					drawContours(fnc, 4, 0, 10, 0, 10, 0.25);
                 </div>
 
 
