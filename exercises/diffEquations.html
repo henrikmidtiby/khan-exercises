@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html data-require="math math-format graphie diff-equations">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Local minima</title>
+    <script src="../khan-exercise.js"></script>
+</head>
+<!--
+Look at "utils/graphie-helpers.js:redrawParabola" for updating function based on "handles" 
+where certain coefficients in the equation can be changed.
+-->
+<body>
+    <div class="exercise">
+    <div class="vars">
+        <var id="FUNC0">makeAdder(2)</var>
+        <var id="FUNC0n">generateLogisticGrowthFunction(2)</var>
+        <var id="FUNC1">function( x ) {
+            return (2/(1+2*exp(-0.4*x)));
+        }</var>
+        <var id="FUNC2">function( x ) {
+            return (2/(1+15*exp(-0.4*x)));
+        }</var>
+        <var id="FUNC3">function( x ) {
+            return (2/(1-0.5*exp(-0.4*x)));
+        }</var>
+        <var id="FUNC4">function( x ) {
+            return (1.11*exp(0.4*x));
+        }</var>
+
+    </div>
+
+    <div class="problems">
+        <div>
+            <div class="question">
+                <div id="graph" class="graphie">
+                        graphInit({
+                            range: 5,
+                            scale: 40,
+                            tickStep: 1,
+                            axisArrows: "<->"
+                        });
+
+                        style({
+                            stroke: "#6495ED",
+                        });
+                        plot( FUNC1, [-5, 5]);
+
+						style({
+                        	stroke: "#FFA500",
+	                    });
+                        plot( FUNC2, [-5, 5]);
+
+						style({
+                        	stroke: "#FFA5FF",
+	                    });
+                        plot( FUNC3, [-5, 5]);
+
+						style({
+                        	stroke: "#FF0500",
+	                    });
+                        plot( FUNC4, [-5, 5]);
+                 </div>
+            </div>
+
+            <div class="solution" data-type="set">
+                <div class="input-format">
+                    <p>Local minimas</p>
+                    <p><code>x = \quad </code><span class="entry"></span></p>
+                    <p><code>x = \quad </code><span class="entry"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hints">
+		<p>hej</p>
+    </div>
+    </div>
+</body>
+</html>

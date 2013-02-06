@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html data-require="math graphie graphie-helpers graphie-geometry math-format interactive triangle-congruence">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Interactive test exercise</title>
+		<script src="../khan-exercise.js"></script>
+		<style type="text/css">
+				#answer_area input[type=text] {
+						width: 40px;
+				}
+		</style>
+</head>
+<body>
+		<div class="exercise">
+				<div class="vars" data-ensure="0 < abs( AX + BX ) && abs( AX + BX ) < 10 && 0 < abs( AY + BY ) && abs( AY + BY ) < 10 && (AX * AY) * (BX * BY) < 0">
+						<var id="AX">randRangeNonZero( -9, 9 )</var>
+						<var id="AY">randRangeNonZero( -9, 9 )</var>
+
+						<var id="BX">randRangeNonZero( -9, 9 )</var>
+						<var id="BY">randRangeNonZero( -9, 9 )</var>
+				</div>
+				<div class="problems">
+						<div>
+								<div class="graphie">
+										graphInit({
+												range: 10,
+												scale: 20,
+												tickStep: 1,
+												labelStep: 1,
+												unityLabels: false,
+												labelFormat: function( s ) { return "\\small{" + s + "}"; },
+												axisArrows: "<->"
+												});
+
+										addMouseLayer();
+
+										graph.line1 = addMovableLineSegment({
+												snapX: 1,
+												snapY: 1,
+												coordA: [ 0, 0 ],
+												coordZ: [ AX, AY ],
+												fixed: false,
+												});
+
+										graph.line2 = addMovableLineSegment({
+												snapX: 1,
+												snapY: 1,
+												coordA: [ 0, 0 ],
+												coordZ: [ BX, BY ],
+												fixed: false,
+												});
+								</div>
+								<div class="solution" data-type="multiple">
+										<p><span class="sol" data-fallback="1"><var>AX + BX</var></span> 
+											<code>\hat\imath + {}</code><span class="sol" data-fallback="1"><var>AY + BY</var></span> <code>\hat\jmath</code></p>
+								</div>
+						</div>
+				</div>
+		</div>
+</body>
+</html>
