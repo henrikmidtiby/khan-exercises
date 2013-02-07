@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html data-require="math math-format">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Initial conditions second order differential equations</title>
+    <script src="../khan-exercise.js"></script>
+</head>
+<body>
+    <div class="exercise">
+        <div class="problems">
+            <div id="harmonic-oscillation">
+                <div class="vars">
+                    <var id="A">randRangeNonZero(-7, 7)</var>
+                    <var id="B">randRangeNonZero(1, 5)</var>
+                    <var id="C">randRangeNonZero(-7, 7)</var>
+                    <var id="y0val">C</var>
+                    <var id="dy0val">A*B</var>
+                </div>
+                <div class="problem">
+                    <p>Find the solution to the differential equation:</p>
+                    <p><code>\frac{d^2y}{dt^2} = <var>-B*B</var> \cdot y</code></p>
+                    <p> with the initial conditions <code>y(0) = <var>y0val</var></code> and <code>y'(0) = <var>dy0val</var></code>.</p>
+                    <p>Express your answer in terms of A, B and C values in the following equation.</p>
+                    <p><code>y(t) = A \cdot \sin\left( B \cdot t \right) + C \cdot \cos\left( B \cdot t \right)</code></p>
+                </div>
+                <p class="question">Determine solution to the differential equation matching the initial conditions.</p>
+                <div class="solution" data-type="multiple">
+                    <p><code>A</code> = <span class="sol" data-type="rational"><var>A</var></span></p>
+                    <p><code>B</code> = <span class="sol" data-type="rational"><var>B</var></span></p>
+                    <p><code>C</code> = <span class="sol" data-type="rational"><var>C</var></span></p>
+                </div>
+                <div class="hints">
+                    <div>
+                        <p>The general solution to the differential equation is:</p>
+                        <p><code>y(t) = A \cdot \sin \left( <var>B</var> \cdot t \right) + C \cdot \cos \left( <var>B</var> \cdot t \right)</code></p>
+                        <p>From this the value of B is found to be <var>B</var>.</p>
+                    </div>
+                    <div>
+                        <p>Insertion of the initial function value yields (<code>t = 0</code> and <code>y(0) = <var>y0val</var></code>):</p>
+                        <p><code>y(0) = A \cdot \sin \left( <var>B</var> \cdot 0 \right) + C \cdot \cos \left( <var>B</var> \cdot 0 \right)</code></p>
+                        <p><code><var>y0val</var> = A \cdot \sin(0) + C \cdot \cos(0) </code></p>
+                        <p><code><var>y0val</var> = C</code></p>
+                    </div>
+                    <div>
+                        <p>Insertion of the initial function derivative yields (<code>t = 0</code> and <code>y'(0) = <var>dy0val</var></code>):</p>
+                        <p><code>y'(0) = <var>B</var> \cdot A \cdot \cos \left( <var>B</var> \cdot 0 \right) - <var>B</var> \cdot C \cdot \sin \left( <var>B</var> \cdot 0 \right)</code></p>
+                        <p><code><var>dy0val</var> = <var>B</var> \cdot A \cdot \cos(0) - <var>B</var> \cdot C \cdot \sin(0)</code></p>
+                        <p><code><var>dy0val</var> = <var>B</var> \cdot A</code></p>
+                        <p><code>A = <var>dy0val / B</var></code></p>
+                    </div>
+                </div>
+            </div> <!-- harmonic oscillation -->
+            <div id="exponentials">
+                <div class="vars">
+                    <var id="A">randRangeNonZero(-7, 7)</var>
+                    <var id="B">randRangeNonZero(1, 5)</var>
+                    <var id="C">randRangeNonZero(-7, 7)</var>
+                    <var id="y0val">A+C</var>
+                    <var id="dy0val">A*B-B*C</var>
+                </div>
+                <div class="problem">
+                    <p>Find the solution to the differential equation:</p>
+                    <p><code>\frac{d^2y}{dt^2} = <var>B*B</var> \cdot y</code></p>
+                    <p> with the initial conditions <code>y(0) = <var>y0val</var></code> and <code>y'(0) = <var>dy0val</var></code>.</p>
+                    <p>Express your answer in terms of A, B and C values in the following equation.</p>
+                    <p><code>y(t) = A \cdot \exp\left( B \cdot t \right) + C \cdot \exp\left( -B \cdot t \right)</code></p>
+                </div>
+                <p class="question">Determine solution to the differential equation matching the initial conditions.</p>
+                <div class="solution" data-type="multiple">
+                    <p><code>A</code> = <span class="sol" data-type="rational"><var>A</var></span></p>
+                    <p><code>B</code> = <span class="sol" data-type="rational"><var>B</var></span></p>
+                    <p><code>C</code> = <span class="sol" data-type="rational"><var>C</var></span></p>
+                </div>
+                <div class="hints">
+                    <div>
+                        <p>The general solution to the differential equation is:</p>
+                        <p><code>y(t) = A \cdot \exp \left( <var>B</var> \cdot t \right) + C \cdot \exp \left( <var>-B</var> \cdot t \right)</code></p>
+                        <p>From this the value of B is found to be <var>B</var>.</p>
+                    </div>
+                    <div>
+                        <p>Insertion of the initial function value yields (<code>t = 0</code> and <code>y(0) = <var>y0val</var></code>):</p>
+                        <p><code>y(0) = A \cdot \exp \left( <var>B</var> \cdot 0 \right) + C \cdot \exp \left( <var>-B</var> \cdot 0 \right)</code></p>
+                        <p><code><var>y0val</var> = A \cdot \exp(0) + C \cdot \exp(0)</code></p>
+                        <p><code><var>y0val</var> = A + C</code></p>
+                    </div>
+                    <div>
+                        <p>Insertion of the initial function derivative yields (<code>t = 0</code> and <code>y'(0) = <var>dy0val</var></code>):</p>
+                        <p><code>y'(0) = <var>B</var> A \cdot \exp \left( <var>B</var> \cdot 0 \right) -<var>B</var> C \cdot \exp \left( <var>-B</var> \cdot 0 \right)</code></p>
+                        <p><code><var>dy0val</var> = <var>B</var> A \cdot \exp(0) -<var>B</var> C \cdot \exp(0)</code></p>
+                        <p><code><var>dy0val</var> = <var>B</var> A -<var>B</var> C</code></p>
+                        <p><code><var>dy0val / B</var> = A - C</code></p>
+                    </div>
+                    <div>
+                        <p>The two equations with two unknowns are solved as</p>
+                        <p><code>A = <var>y0val / 2</var> + <var>dy0val / (2*B)</var> = <var>y0val / 2 + dy0val / (2*B)</var></code></p>
+                        <p><code>C = <var>y0val / 2</var> - <var>dy0val / (2*B)</var> = <var>y0val / 2 - dy0val / (2*B)</var></code></p>
+                    </div>
+                </div>
+            </div> <!-- exponentials -->
+            <div id="constant-acceleration">
+                <div class="vars">
+                    <var id="A">randRangeNonZero(-7, 7)</var>
+                    <var id="B">randRangeNonZero(-7, 7)</var>
+                    <var id="C">randRangeNonZero(-7, 7)</var>
+                    <var id="y0val">C</var>
+                    <var id="dy0val">B</var>
+                </div>
+                <div class="problem">
+                    <p>Find the solution to the differential equation:</p>
+                    <p><code>\frac{d^2y}{dt^2} = <var>2*A</var></code></p>
+                    <p> with the initial conditions <code>y(0) = <var>y0val</var></code> and <code>y'(0) = <var>dy0val</var></code>.</p>
+                    <p>Express your answer in terms of A, B and C values in the following equation.</p>
+                    <p><code>y(t) = A \cdot t^2 + B \cdot t + C</code></p>
+                </div>
+                <p class="question">Determine solution to the differential equation matching the initial conditions.</p>
+                <div class="solution" data-type="multiple">
+                    <p><code>A</code> = <span class="sol" data-type="rational"><var>A</var></span></p>
+                    <p><code>B</code> = <span class="sol" data-type="rational"><var>B</var></span></p>
+                    <p><code>C</code> = <span class="sol" data-type="rational"><var>C</var></span></p>
+                </div>
+                <div class="hints">
+                    <div>
+                        <p>The general solution to the differential equation is:</p>
+                        <p><code>y(t) = <var>A</var> \cdot t^2 + B \cdot t + C</code></p>
+                        <p>From this the value of A is found to be <var>A</var>.</p>
+                    </div>
+                    <div>
+                        <p>Insertion of the initial function value yields (<code>t = 0</code> and <code>y(0) = <var>y0val</var></code>):</p>
+                        <p><code>y(0) = <var>A</var> \cdot 0^2 + B \cdot 0 + C</code></p>
+                        <p><code><var>y0val</var> = C</code></p>
+                    </div>
+                    <div>
+                        <p>Insertion of the initial function derivative yields (<code>t = 0</code> and <code>y'(0) = <var>dy0val</var></code>):</p>
+                        <p><code>y'(0) = <var>A</var> \cdot 2 \cdot 0 + B</code></p>
+                        <p><code><var>dy0val</var> = B</code></p>
+                    </div>
+                </div>
+            </div> <!-- constant acceleration -->
+        </div> <!-- problems -->
+    </div> <!-- exercise -->
+</body>
+</html>
