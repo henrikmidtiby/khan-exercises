@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html data-require="math math-format">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Recognize a second order differential equation</title>
+    <script src="../khan-exercise.js"></script>
+</head>
+<body>
+    <div class="exercise">
+        <div class="vars">
+            <var id="ORDINARY_EQN">1</var>
+            <var id="FIRST_ORDER_DIFF_EQN">2</var>
+            <var id="SECOND_ORDER_DIFF_EQN">3</var>
+            <var id="A">randRange(1, 5)</var>
+            <var id="B">randRange(1, 5)</var>
+            <var id="C">randRange(1, 5)</var>
+            <var id="Equations">[
+                { eqn: "y''(t) = " + A + " t", type: SECOND_ORDER_DIFF_EQN },
+                { eqn: "y''(t) + " + A + " y'(t) + " + B + " \\cdot y(t) = 0", type: SECOND_ORDER_DIFF_EQN },
+                { eqn: "y''(t) = " + -A + " y^2", type: SECOND_ORDER_DIFF_EQN },
+                { eqn: "y''(t) = " + -A + " \\cdot y", type: SECOND_ORDER_DIFF_EQN },
+                { eqn: "\\frac{d^2y}{dt^2} = " + A + " t", type: SECOND_ORDER_DIFF_EQN },
+                { eqn: "\\frac{d^2y}{dt^2} + " + A + " \\frac{dy}{dt} + " + B + " \\cdot y = 0", type: SECOND_ORDER_DIFF_EQN },
+                { eqn: "\\frac{d^2y}{dt^2} = " + -A + " y^2", type: SECOND_ORDER_DIFF_EQN },
+                { eqn: "\\frac{d^2y}{dt^2} = " + -A + " \\cdot y", type: SECOND_ORDER_DIFF_EQN },
+                { eqn: "y = " + A + " x + " + B, type: ORDINARY_EQN }, 
+                { eqn: "y(x) = " + A + " x + " + B + " + " + C + " x^2", type: ORDINARY_EQN }, 
+                { eqn: "y(t) = " + A + " t + " + B + " + " + C + " t^2", type: ORDINARY_EQN }, 
+                { eqn: "\\frac{dy}{dt} = " + A + " t", type: FIRST_ORDER_DIFF_EQN },
+                { eqn: "y'(t) = " + A + " t", type: FIRST_ORDER_DIFF_EQN }]</var>
+			<var id="Equation">randFromArray(Equations)</var>
+			<var id="EqType">Equation.type</var>
+			<var id="EqnTypes">["Ordinary equation", "First order differential equation", "Second order differential equation"]</var>
+			<var id="Answer">EqnTypes[EqType - 1]</var>
+        </div>
+		<div class="problems">
+			<div id="problem-type-or-description">
+				<p class="problem">The following equation is given:</p>
+				<p><code><var>Equation.eqn</var></code></p>
+				<p class="question">What is the type of the equation?</p>
+				<p class="solution"><var>Answer</var></p>
+				<ul class="choices" data-category="true">
+					<li>Ordinary equation</li>
+					<li>First order differential equation</li>
+					<li>Second order differential equation</li>
+				</ul>
+				<div class="hints">
+					<p>A second order differential equation contains terms like <code>\frac{d^2y}{dt^2}</code> or <code>y''(t)</code>.</p>
+					<p data-if="EqType !== 3">The equation does not contain any second order derivatives.</p>
+					<p data-if="EqType === 3">The equation does contain a second order derivatives and is thus a "Second order differential equation".</p>
+					<p data-if="EqType !== 3">A first order differential equation contains terms like <code>\frac{dy}{dt}</code> or <code>y'(t)</code>.</p>
+					<p data-if="EqType === 2">The equation contains a first order derivative and is thus a "First order differential equation".</p>
+					<p data-if="EqType === 1">The equation does not contain any derivatives and is thus an "Ordinary equation".</p>
+				</div>
+			</div>
+		</div>
+    </div>
+</body>
+</html>
